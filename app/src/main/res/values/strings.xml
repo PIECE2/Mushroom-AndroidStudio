@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Mushroomer</string>
     <string name="register">Register</string>
-    <string name="login">LOGIN</string>
-    <string name="login_b">Login</string>
+    <string name="register_caps">REGISTER</string>
+    <string name="login_caps">LOGIN</string>
+    <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
 </resources>
