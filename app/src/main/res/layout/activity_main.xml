@@ -32,7 +32,7 @@
             android:padding="10dp"
             android:text="@string/login"
             android:textAlignment="center"
-            android:textColor="#476a69"
+            android:textColor="#708a68"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -67,7 +67,7 @@
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:padding="8dp"
-                        android:textColorHint="#476a69" />
+                        android:textColorHint="#708a68" />
 
                     <View
                         android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                         android:paddingTop="8dp"
                         android:paddingRight="8dp"
                         android:paddingBottom="8dp"
-                        android:textColorHint="#476a69" />
+                        android:textColorHint="#708a68" />
 
                     <View
                         android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                     android:stateListAnimator="@null"
                     android:text="@string/login_b"
                     android:textAllCaps="false"
-                    android:textColor="#476a69"
+                    android:textColor="#708a68"
                     android:textSize="18sp"
                     android:textStyle="normal"
                     tools:targetApi="lollipop"
@@ -133,7 +133,7 @@
                     android:stateListAnimator="@null"
                     android:text="@string/register"
                     android:textAllCaps="false"
-                    android:textColor="#476a69"
+                    android:textColor="#708a68"
                     android:textSize="18sp"
                     android:textStyle="normal"
                     tools:targetApi="lollipop" />
