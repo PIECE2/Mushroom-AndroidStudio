@@ -1,6 +1,9 @@
 package com.example.mushroomer;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,11 +16,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
-    private Button registerBtn,gotoLoginBtn;
 
+    private Button registerBtn,gotoLoginBtn;
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase db;
     private EditText regName,regPhone,regGmail,regPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,18 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    // Call the function of transition to Login (when pressing a mechanical button)
+    public void onBackPressed() {
+        openQuitDialog();
+    }
+
+    //Login opening function
+    private void openQuitDialog() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void insertData(String fname,String fPhone,String fGmail,String fPassword){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.COL_2,fname);
