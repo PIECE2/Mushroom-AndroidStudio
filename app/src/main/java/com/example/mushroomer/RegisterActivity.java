@@ -1,13 +1,7 @@
 package com.example.mushroomer;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,12 +9,38 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
 
-    private Button registerBtn,gotoLoginBtn;
-    private SQLiteOpenHelper openHelper;
-    private SQLiteDatabase db;
-    private EditText regName,regPhone,regGmail,regPassword;
+    Button registerBtn, gotoLoginBtn;
+    FirebaseAuth auth;
+    FirebaseDatabase db;
+    DatabaseReference users;
+    EditText regName, regGmail, regPassword;
+
+    //Regular expressions to check email
+    public static final String VALID_EMAIL_ADDRESS_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+
+    //Regular expressions to check name
+    public static final String VALID_NAME_ADDRESS_REGEX = "^[A-Z][a-zA-Z]{1,20}$";
+
+    //Regular expressions to check password
+    //^                 tart-of-string
+    //(?=.*[0-9])       a digit must occur at least once
+    // (?=.*[a-z])      a lower case letter must occur at least once
+    //(?=.*[A-Z])       an upper case letter must occur at least once
+    //@#$%^&+=])        a special character must occur at least once
+    //(?=\S+$)          no whitespace allowed in the entire string
+    //.{8,}             anything, at least eight places though
+    //$                 end-of-string
+    public static final String VALID_PASSWORD_ADDRESS_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,32}$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,28 +48,46 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        openHelper = new DatabaseHelper(this);
-
         registerBtn = findViewById(R.id.btnRegLogin);
         gotoLoginBtn = findViewById(R.id.btnGotoLogin);
         regName = findViewById(R.id.etRegName);
-        regPhone = findViewById(R.id.etRegPhone);
         regGmail = findViewById(R.id.etRegGmail);
         regPassword = findViewById(R.id.etRegPassword);
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance();
+        users = db.getReference("Users");
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db = openHelper.getWritableDatabase();
-                String fname = regName.getText().toString().trim();
-                String fPhone = regPhone.getText().toString().trim();
-                String fGmail = regGmail.getText().toString().trim();
-                String fPassword = regPassword.getText().toString().trim();
-                if (fname.isEmpty() || fPassword.isEmpty() || fGmail.isEmpty() || fPhone.isEmpty()) {
+                if (regName.getText().toString().isEmpty() || regPassword.getText().toString().isEmpty() || regGmail.getText().toString().isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Please fill all the details", Toast.LENGTH_SHORT).show();
-                } else {
-                    insertData(fname,fPhone,fGmail,fPassword);
-                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                }
+                else if (regName.getText().toString().matches(VALID_NAME_ADDRESS_REGEX) && regPassword.getText().toString().matches(VALID_PASSWORD_ADDRESS_REGEX) && regGmail.getText().toString().matches(VALID_EMAIL_ADDRESS_REGEX)) {
+                    auth.createUserWithEmailAndPassword(regGmail.getText().toString(), regPassword.getText().toString())
+                            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            DatabaseHelper databaseHelper = new DatabaseHelper();
+                            databaseHelper.setName(regName.getText().toString());
+                            databaseHelper.setEmail(regGmail.getText().toString());
+                            databaseHelper.setPass(regPassword.getText().toString());
+
+                            users.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                                    .setValue(databaseHelper)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(RegisterActivity.this, LoginSucess.class));
+                                            finish();
+                                        }
+                                    });
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(RegisterActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -72,15 +110,5 @@ public class RegisterActivity extends AppCompatActivity {
     private void openQuitDialog() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    public void insertData(String fname,String fPhone,String fGmail,String fPassword){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.COL_2,fname);
-        contentValues.put(DatabaseHelper.COL_3,fPhone);
-        contentValues.put(DatabaseHelper.COL_4,fGmail);
-        contentValues.put(DatabaseHelper.COL_5,fPassword);
-
-        long id = db.insert(DatabaseHelper.TABLE_NAME,null,contentValues);
     }
 }

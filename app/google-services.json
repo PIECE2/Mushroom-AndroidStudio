@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "152423490426",
+    "firebase_url": "https://mushroomer0.firebaseio.com",
+    "project_id": "mushroomer0",
+    "storage_bucket": "mushroomer0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152423490426:android:c497a4bd4229f555deecc3",
+        "android_client_info": {
+          "package_name": "com.example.mushroomer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152423490426-sugu1tk8k9kljsb9vo8478ldhci45gu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBS6EOgk6yRi8b0Nu37KhoVh9aLqALMe68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152423490426-sugu1tk8k9kljsb9vo8478ldhci45gu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
