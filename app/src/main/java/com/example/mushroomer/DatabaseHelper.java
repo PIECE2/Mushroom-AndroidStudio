@@ -1,16 +1,23 @@
 package com.example.mushroomer;
 
 public class DatabaseHelper {
-    private String name, email, pass;
+    private String name, email, pass, id;
 
     public DatabaseHelper() {}
 
-    public DatabaseHelper(String name, String email, String pass) {
+    public DatabaseHelper(String name, String email, String pass, String id) {
         this.name = name;
         this.email = email;
         this.pass = pass;
+        this.id = id;
     }
 
+    public  String getId() {
+        return id;
+    }
+    public  void setId(String id){
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

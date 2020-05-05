@@ -2,16 +2,19 @@ package com.example.mushroomer;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -72,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                             databaseHelper.setName(regName.getText().toString());
                             databaseHelper.setEmail(regGmail.getText().toString());
                             databaseHelper.setPass(regPassword.getText().toString());
+                            databaseHelper.setId(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
 
                             users.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                                     .setValue(databaseHelper)
