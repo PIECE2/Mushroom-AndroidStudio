@@ -6,13 +6,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:scaleType="centerInside"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/forest_photo"
-        all
         android:scaleType="centerCrop"/>
 
     <LinearLayout
@@ -20,8 +20,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="40dp"
-        android:scaleType="centerInside"
-        tools:context=".MainActivity">
+        android:scaleType="centerInside">
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,6 +67,7 @@
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:padding="8dp"
+                        android:textColor="#FFFFFF"
                         android:textColorHint="#708a68" />
 
                     <View
@@ -127,14 +127,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/background_login_white"
+                    android:background="@null"
                     android:clickable="true"
                     android:focusable="true"
-                    android:padding="16dp"
                     android:stateListAnimator="@null"
                     android:text="@string/register"
                     android:textAllCaps="false"
-                    android:textColor="#708a68"
+                    android:textColor="#FFFFFFFF"
                     android:textSize="18sp"
                     android:textStyle="normal"
                     tools:targetApi="lollipop" />

@@ -2,8 +2,8 @@ package com.example.mushroomer;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvRegister;
     private EditText etLoginGmail,etLoginPassword;
     private Button loginButton;
-    private Cursor cursor;
 
     //Regular expressions to check email
     public static final String VALID_EMAIL_ADDRESS_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";

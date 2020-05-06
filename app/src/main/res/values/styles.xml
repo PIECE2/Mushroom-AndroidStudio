@@ -6,6 +6,7 @@
         <item name="colorAccent">#d6d1c5</item>
         <item name="actionMenuTextColor">#d6d1c5</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
 </resources>
