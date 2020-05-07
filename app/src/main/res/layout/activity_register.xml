@@ -11,30 +11,24 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/forest_photo"
+        android:src="@drawable/background_main"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="40dp"
+        android:padding="32dp"
         android:scaleType="centerInside"
         tools:context=".RegisterActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="48dp"
-            android:background="@drawable/background_login_white"
-            android:ems="6"
-            android:padding="10dp"
-            android:text="@string/register_caps"
-            android:textAlignment="center"
-            android:textColor="#708a68"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/icon_register"
+            android:padding="100dp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -65,7 +59,7 @@
                         android:inputType="textEmailAddress"
                         android:padding="8dp"
                         android:hint="Name"
-                        android:textColorHint="#708a68"
+                        android:textColorHint="#522e20"
                         android:maxLines="1" />
 
                     <View
@@ -73,7 +67,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:background="#f9d7db"/>
+                        android:background="#d1a992"/>
 
                     <EditText
                         android:id="@+id/etRegGmail"
@@ -88,7 +82,7 @@
                         android:inputType="textEmailAddress"
                         android:padding="8dp"
                         android:hint="Gmail"
-                        android:textColorHint="#708a68"
+                        android:textColorHint="#522e20"
                         android:maxLines="1" />
 
                     <View
@@ -96,7 +90,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:background="#f9d7db" />
+                        android:background="#d1a992" />
 
                     <EditText
                         android:id="@+id/etRegPassword"
@@ -108,7 +102,7 @@
                         android:background="@android:color/transparent"
                         android:drawablePadding="12dp"
                         android:ems="10"
-                        android:textColorHint="#708a68"
+                        android:textColorHint="#522e20"
                         android:hint="Password"
                         android:padding="8dp"
                         android:maxLines="1" />
@@ -118,7 +112,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:background="#f9d7db" />
+                        android:background="#d1a992" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -126,7 +120,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:text="- use letters, numbers, symbols to enter the password\n- at least 6 characters\n- at least one special character\n- at least one uppercase"
-                        android:textColor="#92708A68"
+                        android:textColor="#522e20"
                         android:textSize="10dp"
                         android:layout_marginBottom="20dp"/>
                 </LinearLayout>
@@ -142,7 +136,7 @@
                     android:background="@drawable/background_login_white"
                     android:text="Register"
                     android:textAllCaps="false"
-                    android:textColor="#708a68"
+                    android:textColor="#522e20"
                     android:textSize="18sp"
                     android:textStyle="normal"
                     tools:targetApi="lollipop"
@@ -154,8 +148,9 @@
                     android:layout_marginTop="12dp"
                     android:id="@+id/btnGotoLogin"
                     android:clickable="true"
+                    android:padding="16dp"
                     android:stateListAnimator="@null"
-                    android:background="@null"
+                    android:background="@drawable/background_login_white_solid"
                     android:text="Login"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
