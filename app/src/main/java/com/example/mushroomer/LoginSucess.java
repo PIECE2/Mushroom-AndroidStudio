@@ -13,4 +13,14 @@ public class LoginSucess extends AppCompatActivity {
         setContentView(R.layout.activity_login_sucess);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
+
+    // Call the function of transition to Login (when pressing a mechanical button)
+    public void onBackPressed() {
+        openQuitDialog();
+    }
+
+    //Exit
+    private void openQuitDialog() {
+        finish();
+    }
 }

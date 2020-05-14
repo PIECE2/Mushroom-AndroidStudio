@@ -3,7 +3,6 @@ package com.example.mushroomer;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -84,4 +83,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    // Call the function of transition to Login (when pressing a mechanical button)
+    public void onBackPressed() {
+        openQuitDialog();
+    }
+
+    //Exit
+    private void openQuitDialog() {
+        finish();
+    }
+
 }

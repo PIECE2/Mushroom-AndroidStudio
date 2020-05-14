@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -99,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
         gotoLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+                startActivity(new Intent(RegisterActivity.this,RegisterActivity.class));
                 finish();
             }
         });
@@ -114,5 +113,6 @@ public class RegisterActivity extends AppCompatActivity {
     private void openQuitDialog() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }
